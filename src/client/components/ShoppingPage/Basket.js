@@ -5,10 +5,10 @@ const BasketItem = ({ item }) => {
   const { removeItem } = useContext(ShoppingContext);
 
   return (
-    <div className="basketItem">
-      <div className="itemData">{item.name}</div>
+    <div className="basket-item">
+      <div className="basket-item__name">{item.name}</div>
       <div className="itemData">{item.quantity}</div>
-      <button className="itemData" onClick={() => removeItem(item)}>Remove</button>
+      <button className="basket-item__remove-button" onClick={() => removeItem(item)}>Remove</button>
     </div>
   )
 };
@@ -24,9 +24,9 @@ const TotalPrice = ({ basketList }) => {
 
 const Basket = ({ basketList }) => {
   return (
-    <div className="basketContainer">
-      <div className="basketList">
-        <div>
+    <div className="basket-container">
+      <div className="basket">
+        <div className="basket-list">
           {
             basketList.length === 0 &&
             <div className="hint">Add Items to Your Basket</div>

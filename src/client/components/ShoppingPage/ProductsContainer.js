@@ -8,15 +8,16 @@ const Product = ({ product }) => {
 
   return (
     <div className="product">
-      <div>{product.name}</div>
-      <button onClick={() => addItem(product)}>Add</button>
+      <div className="product__name">{product.name}</div>
+      <img className="product__image" src={product.imagePath} alt="phone photo"/>
+      <button className="product__add-button" onClick={() => addItem(product)}>ADD</button>
     </div>
   )
 };
 
 const ProductsContainer = () => {
   return (
-    <div className="productsContainer">
+    <div className="products-container">
       {productsList.map(product =>
         <Product product={product} />
       )}

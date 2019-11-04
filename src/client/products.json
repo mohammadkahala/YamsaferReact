@@ -1,26 +1,37 @@
 [
   {
-    "name": "Pixel XL",
-    "price": 1000
+    "name": "Google Pixel 4 XL",
+    "price": 999,
+    "imagePath": "/phoneImages/google-pixel-4-xl.jpg"
   },
   {
-    "name": "LG V20",
-    "price": 700
+    "name": "Google Pixel 2 XL",
+    "price": 999,
+    "imagePath": "/phoneImages/google-pixel-xl2.jpg"
   },
   {
-    "name": "Iphone XS",
-    "price": 1000
+    "name": "Apple iPhone 11 Pro Max",
+    "price": 1090,
+    "imagePath": "/phoneImages/apple-iphone-11-pro.jpg"
   },
   {
-    "name": "Note 10",
-    "price": 1200
+    "name": "OnePlus 7T Pro",
+    "price": 749,
+    "imagePath": "/phoneImages/oneplus-7t-pro.jpg"
   },
   {
-    "name": "OnePlus 3",
-    "price": 800
+    "name": "Samsung Galaxy S10+",
+    "price": 879,
+    "imagePath": "/phoneImages/samsung-galaxy-s10-plus-new.jpg"
   },
   {
-    "name": "Mate 20",
-    "price": 1000
+    "name": "Samsung Galaxy Note10+",
+    "price": 879,
+    "imagePath": "/phoneImages/samsung-galaxy-note10-plus.jpg"
+  },
+  {
+    "name": "ZTE Blade 20",
+    "price": 900,
+    "imagePath": "/phoneImages/ztel-blade-v20.jpg"
   }
 ]

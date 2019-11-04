@@ -1,7 +1,7 @@
 import types from './types';
 import status from '../../constants';
 
-const EMAIL = "kahala";
+const EMAIL = "admin";
 const PASSWORD = "admin";
 
 export const verifyUser = (email, password) => {
@@ -17,6 +17,14 @@ export const verifyUser = (email, password) => {
       type: types.LOG_IN_STATUS,
       payload: status.INVALID_USER
     }
+  }
+};
+
+export const signOut = () => {
+  document.cookie = "loggedIn=false";
+  return {
+    type: types.LOG_IN_STATUS,
+    payload: status.LOGGED_OUT
   }
 };
 

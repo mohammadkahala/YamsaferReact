@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {connect} from 'react-redux';
-
+import { signOut } from '../../redux/actions';
 import status from '../../../constants';
 import ProductsContainer from "./ProductsContainer";
 import Basket from "./Basket";
@@ -15,7 +15,7 @@ const getItemFromList = (list, item) => {
   return null;
 };
 
-const ShoppingPage = ({ history, registrationStatus}) => {
+const ShoppingPage = ({ history, registrationStatus, signOut }) => {
   if (registrationStatus === status.LOGGED_OUT)
     history.push('/');
 
@@ -57,9 +57,14 @@ const ShoppingPage = ({ history, registrationStatus}) => {
 
   return (
     <ShoppingProvider value={{addItem, removeItem}}>
+      <button
+        className="sign-out"
+        onClick={() => signOut()}>
+        SIGN OUT
+      </button>
       <div className="shopping-screen">
-        <ProductsContainer />
         <Basket basketList={basketItems} />
+        <ProductsContainer />
       </div>
     </ShoppingProvider>
   );
@@ -69,4 +74,4 @@ const mapStateToProps = (state) => {
   return { registrationStatus: state.loggedIn };
 };
 
-export default connect(mapStateToProps)(ShoppingPage);
+export default connect(mapStateToProps, { signOut })(ShoppingPage);

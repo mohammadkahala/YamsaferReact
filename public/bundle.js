@@ -2176,6 +2176,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(9);
 
+var _actions = __webpack_require__(82);
+
 var _constants = __webpack_require__(6);
 
 var _constants2 = _interopRequireDefault(_constants);
@@ -2226,7 +2228,8 @@ var getItemFromList = function getItemFromList(list, item) {
 
 var ShoppingPage = function ShoppingPage(_ref) {
   var history = _ref.history,
-      registrationStatus = _ref.registrationStatus;
+      registrationStatus = _ref.registrationStatus,
+      signOut = _ref.signOut;
 
   if (registrationStatus === _constants2.default.LOGGED_OUT) history.push('/');
 
@@ -2271,10 +2274,19 @@ var ShoppingPage = function ShoppingPage(_ref) {
     ShoppingProvider,
     { value: { addItem: addItem, removeItem: removeItem } },
     _react2.default.createElement(
+      'button',
+      {
+        className: 'sign-out',
+        onClick: function onClick() {
+          return signOut();
+        } },
+      'SIGN OUT'
+    ),
+    _react2.default.createElement(
       'div',
       { className: 'shopping-screen' },
-      _react2.default.createElement(_ProductsContainer2.default, null),
-      _react2.default.createElement(_Basket2.default, { basketList: basketItems })
+      _react2.default.createElement(_Basket2.default, { basketList: basketItems }),
+      _react2.default.createElement(_ProductsContainer2.default, null)
     )
   );
 };
@@ -2283,7 +2295,7 @@ var mapStateToProps = function mapStateToProps(state) {
   return { registrationStatus: state.loggedIn };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(ShoppingPage);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { signOut: _actions.signOut })(ShoppingPage);
 
 /***/ }),
 /* 22 */
@@ -38255,7 +38267,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, { logInFromLocalStor
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logInFromLocalStorage = exports.verifyUser = undefined;
+exports.logInFromLocalStorage = exports.signOut = exports.verifyUser = undefined;
 
 var _types = __webpack_require__(34);
 
@@ -38267,7 +38279,7 @@ var _constants2 = _interopRequireDefault(_constants);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var EMAIL = "kahala";
+var EMAIL = "admin";
 var PASSWORD = "admin";
 
 var verifyUser = exports.verifyUser = function verifyUser(email, password) {
@@ -38284,6 +38296,14 @@ var verifyUser = exports.verifyUser = function verifyUser(email, password) {
       payload: _constants2.default.INVALID_USER
     };
   }
+};
+
+var signOut = exports.signOut = function signOut() {
+  document.cookie = "loggedIn=false";
+  return {
+    type: _types2.default.LOG_IN_STATUS,
+    payload: _constants2.default.LOGGED_OUT
+  };
 };
 
 var logInFromLocalStorage = exports.logInFromLocalStorage = function logInFromLocalStorage() {
@@ -40355,15 +40375,16 @@ var Product = function Product(_ref) {
     { className: 'product' },
     _react2.default.createElement(
       'div',
-      null,
+      { className: 'product__name' },
       product.name
     ),
+    _react2.default.createElement('img', { className: 'product__image', src: product.imagePath, alt: 'phone photo' }),
     _react2.default.createElement(
       'button',
-      { onClick: function onClick() {
+      { className: 'product__add-button', onClick: function onClick() {
           return addItem(product);
         } },
-      'Add'
+      'ADD'
     )
   );
 };
@@ -40371,7 +40392,7 @@ var Product = function Product(_ref) {
 var ProductsContainer = function ProductsContainer() {
   return _react2.default.createElement(
     'div',
-    { className: 'productsContainer' },
+    { className: 'products-container' },
     productsList.map(function (product) {
       return _react2.default.createElement(Product, { product: product });
     })
@@ -40384,7 +40405,7 @@ exports.default = ProductsContainer;
 /* 109 */
 /***/ (function(module, exports) {
 
-module.exports = [{"name":"Pixel XL","price":1000},{"name":"LG V20","price":700},{"name":"Iphone XS","price":1000},{"name":"Note 10","price":1200},{"name":"OnePlus 3","price":800},{"name":"Mate 20","price":1000}]
+module.exports = [{"name":"Google Pixel 4 XL","price":999,"imagePath":"/phoneImages/google-pixel-4-xl.jpg"},{"name":"Google Pixel 2 XL","price":999,"imagePath":"/phoneImages/google-pixel-xl2.jpg"},{"name":"Apple iPhone 11 Pro Max","price":1090,"imagePath":"/phoneImages/apple-iphone-11-pro.jpg"},{"name":"OnePlus 7T Pro","price":749,"imagePath":"/phoneImages/oneplus-7t-pro.jpg"},{"name":"Samsung Galaxy S10+","price":879,"imagePath":"/phoneImages/samsung-galaxy-s10-plus-new.jpg"},{"name":"Samsung Galaxy Note10+","price":879,"imagePath":"/phoneImages/samsung-galaxy-note10-plus.jpg"},{"name":"ZTE Blade 20","price":900,"imagePath":"/phoneImages/ztel-blade-v20.jpg"}]
 
 /***/ }),
 /* 110 */
@@ -40413,10 +40434,10 @@ var BasketItem = function BasketItem(_ref) {
 
   return _react2.default.createElement(
     'div',
-    { className: 'basketItem' },
+    { className: 'basket-item' },
     _react2.default.createElement(
       'div',
-      { className: 'itemData' },
+      { className: 'basket-item__name' },
       item.name
     ),
     _react2.default.createElement(
@@ -40426,7 +40447,7 @@ var BasketItem = function BasketItem(_ref) {
     ),
     _react2.default.createElement(
       'button',
-      { className: 'itemData', onClick: function onClick() {
+      { className: 'basket-item__remove-button', onClick: function onClick() {
           return removeItem(item);
         } },
       'Remove'
@@ -40477,13 +40498,13 @@ var Basket = function Basket(_ref3) {
 
   return _react2.default.createElement(
     'div',
-    { className: 'basketContainer' },
+    { className: 'basket-container' },
     _react2.default.createElement(
       'div',
-      { className: 'basketList' },
+      { className: 'basket' },
       _react2.default.createElement(
         'div',
-        null,
+        { className: 'basket-list' },
         basketList.length === 0 && _react2.default.createElement(
           'div',
           { className: 'hint' },
