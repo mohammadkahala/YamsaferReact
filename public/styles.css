@@ -32,7 +32,7 @@ REGISTRATION PAGE
 
 
 .registration-page {
-    background-image: url("/background4.jpg");
+    background-image: url("/wallpaper.jpg");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -361,5 +361,18 @@ Shopping PAGE
 .error {
     font-size: 1.4rem;
     color: orangered;
+    font-weight: bold;
+}
+
+.not-found-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.not-found-page div {
+    font-size: 7rem;
     font-weight: bold;
 }

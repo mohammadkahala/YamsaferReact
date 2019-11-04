@@ -444,14 +444,23 @@ var _RegistrationPage = __webpack_require__(26);
 
 var _RegistrationPage2 = _interopRequireDefault(_RegistrationPage);
 
+var _NotFoundPage = __webpack_require__(31);
+
+var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
   return _react2.default.createElement(
     "div",
     null,
-    _react2.default.createElement(_reactRouterDom.Route, { path: "/", exact: true, component: _RegistrationPage2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: "/shopping", component: _ShoppingPage2.default })
+    _react2.default.createElement(
+      _reactRouterDom.Switch,
+      null,
+      _react2.default.createElement(_reactRouterDom.Route, { path: "/", exact: true, component: _RegistrationPage2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: "/shopping", component: _ShoppingPage2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { component: _NotFoundPage2.default })
+    )
   );
 };
 
@@ -1166,6 +1175,37 @@ var LogInInfo = function LogInInfo(_ref) {
 };
 
 exports.default = LogInInfo;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NotFoundPage = function NotFoundPage() {
+  return _react2.default.createElement(
+    "div",
+    { className: "not-found-page" },
+    _react2.default.createElement(
+      "div",
+      null,
+      "404 Not Found"
+    )
+  );
+};
+
+exports.default = NotFoundPage;
 
 /***/ })
 /******/ ]);
