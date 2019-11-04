@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { verifyUser } from '../../redux/actions';
 import status from '../../../constants';
 
-const LogInPage = ({ registrationStatus, verifyUser }) => {
+const LogIn = ({ registrationStatus, verifyUser }) => {
   const [ emailInput, setEmailInput ] = useState("");
   const [ passwordInput, setPasswordInput ] = useState("");
 
@@ -46,4 +46,8 @@ const LogInPage = ({ registrationStatus, verifyUser }) => {
     )
 };
 
-export default connect(null, { verifyUser })(LogInPage);
+const mapStateToProps = (state) => {
+  return { registrationStatus: state.loggedIn };
+};
+
+export default connect(mapStateToProps, { verifyUser })(LogIn);

@@ -2,15 +2,19 @@ import React from 'react';
 import { logInFromLocalStorage } from '../redux/actions';
 import { connect } from 'react-redux';
 import status from '../../constants';
+import LoadingPage from "./LoadingPage";
 
 class App extends React.Component{
   componentDidMount() {
-    this.props.logInFromLocalStorage();
+    // the app is so fast to see the loading page, so why not waiting 1s to see it in action
+    setTimeout( () => {
+      this.props.logInFromLocalStorage();
+    }, 1000);
   }
 
   render() {
     if (this.props.registrationStatus === status.PENDING)
-      return <div>Loading</div>;
+      return <LoadingPage/>;
 
     return (
       this.props.children

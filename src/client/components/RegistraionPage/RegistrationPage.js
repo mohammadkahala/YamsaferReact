@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import LogInPage from "./LogInPage";
+import LogInPage from "./LogIn";
 import {connect} from 'react-redux';
 import SignUp from "./SignUp";
 import SignUpInfo from "./SignUpInfo";
 import LogInInfo from "./LogInInfo";
 import status from "../../../constants";
 
-const FIRST_LOAD = '';
-const LEFT = 'slideToLeft';
-const RIGHT = 'slideToRight';
+const FIRST_LOAD = '', LEFT = 'slideToLeft', RIGHT = 'slideToRight';
 
 const RegistrationPage = ({ history, registrationStatus }) => {
   const [ sliderPosition, setSliderPosition ] = useState(FIRST_LOAD);
@@ -37,7 +35,7 @@ const RegistrationPage = ({ history, registrationStatus }) => {
         }
         {
           sliderPosition === RIGHT || sliderPosition === FIRST_LOAD
-            ? <LogInPage registrationStatus/>
+            ? <LogInPage />
             : <LogInInfo switchSlider={switchSlider}/>
         }
       </div>

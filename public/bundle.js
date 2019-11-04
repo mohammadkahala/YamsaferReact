@@ -38213,6 +38213,10 @@ var _constants = __webpack_require__(6);
 
 var _constants2 = _interopRequireDefault(_constants);
 
+var _LoadingPage = __webpack_require__(117);
+
+var _LoadingPage2 = _interopRequireDefault(_LoadingPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38233,16 +38237,17 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.logInFromLocalStorage();
+      var _this2 = this;
+
+      // the app is so fast to see the loading page, so why not waiting 1s to see it in action
+      setTimeout(function () {
+        _this2.props.logInFromLocalStorage();
+      }, 1000);
     }
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.registrationStatus === _constants2.default.PENDING) return _react2.default.createElement(
-        'div',
-        null,
-        'Loading'
-      );
+      if (this.props.registrationStatus === _constants2.default.PENDING) return _react2.default.createElement(_LoadingPage2.default, null);
 
       return this.props.children;
     }
@@ -38383,7 +38388,7 @@ var _ShoppingPage = __webpack_require__(21);
 
 var _ShoppingPage2 = _interopRequireDefault(_ShoppingPage);
 
-var _RegistrationPage = __webpack_require__(111);
+var _RegistrationPage = __webpack_require__(118);
 
 var _RegistrationPage2 = _interopRequireDefault(_RegistrationPage);
 
@@ -40522,7 +40527,40 @@ var Basket = function Basket(_ref3) {
 exports.default = Basket;
 
 /***/ }),
-/* 111 */
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LoadingPage = function LoadingPage() {
+  return _react2.default.createElement(
+    "div",
+    { className: "loading-page" },
+    _react2.default.createElement("div", { className: "lds-hourglass" })
+  );
+};
+
+exports.default = LoadingPage;
+
+/***/ }),
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40538,21 +40576,21 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _LogInPage = __webpack_require__(112);
+var _LogIn = __webpack_require__(119);
 
-var _LogInPage2 = _interopRequireDefault(_LogInPage);
+var _LogIn2 = _interopRequireDefault(_LogIn);
 
 var _reactRedux = __webpack_require__(9);
 
-var _SignUp = __webpack_require__(113);
+var _SignUp = __webpack_require__(120);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
-var _SignUpInfo = __webpack_require__(114);
+var _SignUpInfo = __webpack_require__(121);
 
 var _SignUpInfo2 = _interopRequireDefault(_SignUpInfo);
 
-var _LogInInfo = __webpack_require__(115);
+var _LogInInfo = __webpack_require__(122);
 
 var _LogInInfo2 = _interopRequireDefault(_LogInInfo);
 
@@ -40562,9 +40600,9 @@ var _constants2 = _interopRequireDefault(_constants);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FIRST_LOAD = '';
-var LEFT = 'slideToLeft';
-var RIGHT = 'slideToRight';
+var FIRST_LOAD = '',
+    LEFT = 'slideToLeft',
+    RIGHT = 'slideToRight';
 
 var RegistrationPage = function RegistrationPage(_ref) {
   var history = _ref.history,
@@ -40599,7 +40637,7 @@ var RegistrationPage = function RegistrationPage(_ref) {
       { className: 'registration-container' },
       _react2.default.createElement('div', { className: 'white-slider ' + sliderPosition }),
       sliderPosition === RIGHT || sliderPosition === FIRST_LOAD ? _react2.default.createElement(_SignUpInfo2.default, { switchSlider: switchSlider }) : _react2.default.createElement(_SignUp2.default, null),
-      sliderPosition === RIGHT || sliderPosition === FIRST_LOAD ? _react2.default.createElement(_LogInPage2.default, { registrationStatus: true }) : _react2.default.createElement(_LogInInfo2.default, { switchSlider: switchSlider })
+      sliderPosition === RIGHT || sliderPosition === FIRST_LOAD ? _react2.default.createElement(_LogIn2.default, null) : _react2.default.createElement(_LogInInfo2.default, { switchSlider: switchSlider })
     )
   );
 };
@@ -40611,7 +40649,7 @@ var mapStateToProps = function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(RegistrationPage);
 
 /***/ }),
-/* 112 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40637,7 +40675,7 @@ var _constants2 = _interopRequireDefault(_constants);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LogInPage = function LogInPage(_ref) {
+var LogIn = function LogIn(_ref) {
   var registrationStatus = _ref.registrationStatus,
       verifyUser = _ref.verifyUser;
 
@@ -40709,10 +40747,14 @@ var LogInPage = function LogInPage(_ref) {
   );
 };
 
-exports.default = (0, _reactRedux.connect)(null, { verifyUser: _actions.verifyUser })(LogInPage);
+var mapStateToProps = function mapStateToProps(state) {
+  return { registrationStatus: state.loggedIn };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { verifyUser: _actions.verifyUser })(LogIn);
 
 /***/ }),
-/* 113 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40781,7 +40823,7 @@ var SignUp = function SignUp() {
 exports.default = SignUp;
 
 /***/ }),
-/* 114 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40830,7 +40872,7 @@ var SignUpInfo = function SignUpInfo(_ref) {
 exports.default = SignUpInfo;
 
 /***/ }),
-/* 115 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
