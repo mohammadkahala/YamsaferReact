@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -99,12 +99,6 @@ module.exports = require("react-redux");
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-router-dom");
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -129,11 +123,11 @@ var _constants = __webpack_require__(1);
 
 var _constants2 = _interopRequireDefault(_constants);
 
-var _ProductsContainer = __webpack_require__(16);
+var _ProductsContainer = __webpack_require__(14);
 
 var _ProductsContainer2 = _interopRequireDefault(_ProductsContainer);
 
-var _Basket = __webpack_require__(18);
+var _Basket = __webpack_require__(16);
 
 var _Basket2 = _interopRequireDefault(_Basket);
 
@@ -235,6 +229,12 @@ var mapStateToProps = function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(ShoppingPage);
 
 /***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-dom");
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
@@ -263,202 +263,13 @@ exports.default = {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+__webpack_require__(8);
 
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(3);
-
-var _LogInPage = __webpack_require__(8);
-
-var _LogInPage2 = _interopRequireDefault(_LogInPage);
-
-var _ShoppingPage = __webpack_require__(4);
-
-var _ShoppingPage2 = _interopRequireDefault(_ShoppingPage);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-  return _react2.default.createElement(
-    "div",
-    null,
-    _react2.default.createElement(_reactRouterDom.Route, { path: "/", exact: true, component: _LogInPage2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: "/shopping", component: _ShoppingPage2.default })
-  );
-};
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(2);
-
-var _actions = __webpack_require__(9);
-
-var _constants = __webpack_require__(1);
-
-var _constants2 = _interopRequireDefault(_constants);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var LogInPage = function LogInPage(_ref) {
-  var history = _ref.history,
-      registrationStatus = _ref.registrationStatus,
-      verifyUser = _ref.verifyUser;
-
-  var _useState = (0, _react.useState)(""),
-      _useState2 = _slicedToArray(_useState, 2),
-      emailInput = _useState2[0],
-      setEmailInput = _useState2[1];
-
-  var _useState3 = (0, _react.useState)(""),
-      _useState4 = _slicedToArray(_useState3, 2),
-      passwordInput = _useState4[0],
-      setPasswordInput = _useState4[1];
-
-  var handleLogIn = function handleLogIn(event) {
-    event.preventDefault();
-    verifyUser(emailInput, passwordInput);
-  };
-
-  if (registrationStatus === _constants2.default.LOGGED_IN) history.push('/shopping');
-
-  return _react2.default.createElement(
-    'div',
-    { className: 'screen' },
-    _react2.default.createElement(
-      'form',
-      { className: 'form', onSubmit: handleLogIn },
-      _react2.default.createElement('input', {
-        className: 'input',
-        placeholder: 'Enter your Email Or User Name',
-        value: emailInput,
-        onChange: function onChange(_ref2) {
-          var target = _ref2.target;
-          return setEmailInput(target.value);
-        },
-        type: 'text'
-      }),
-      _react2.default.createElement('input', {
-        className: 'input',
-        placeholder: 'Enter your Password',
-        value: passwordInput,
-        onChange: function onChange(_ref3) {
-          var target = _ref3.target;
-          return setPasswordInput(target.value);
-        },
-        type: 'password'
-      }),
-      registrationStatus === _constants2.default.INVALID_USER && _react2.default.createElement(
-        'div',
-        { className: 'error' },
-        'Wrong Email Or Password'
-      ),
-      _react2.default.createElement(
-        'button',
-        { className: 'button' },
-        'Log In'
-      )
-    )
-  );
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return { registrationStatus: state.loggedIn };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { verifyUser: _actions.verifyUser })(LogInPage);
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.logInFromLocalStorage = exports.verifyUser = undefined;
-
-var _types = __webpack_require__(6);
-
-var _types2 = _interopRequireDefault(_types);
-
-var _constants = __webpack_require__(1);
-
-var _constants2 = _interopRequireDefault(_constants);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var EMAIL = "kahala";
-var PASSWORD = "admin";
-
-var verifyUser = exports.verifyUser = function verifyUser(email, password) {
-  if (email === EMAIL && password === PASSWORD) {
-    document.cookie = "loggedIn=true";
-    return {
-      type: _types2.default.LOG_IN_STATUS,
-      payload: _constants2.default.LOGGED_IN
-    };
-  } else {
-    document.cookie = "loggedIn=false";
-    return {
-      type: _types2.default.LOG_IN_STATUS,
-      payload: _constants2.default.INVALID_USER
-    };
-  }
-};
-
-var logInFromLocalStorage = exports.logInFromLocalStorage = function logInFromLocalStorage() {
-  var isLoggedIn = 'false';
-  if (document.cookie) isLoggedIn = document.cookie.split('=')[1];
-
-  if (isLoggedIn && isLoggedIn === 'true') {
-    return {
-      type: _types2.default.LOG_IN_STATUS,
-      payload: _constants2.default.LOGGED_IN
-    };
-  } else {
-    return {
-      type: _types2.default.LOG_IN_STATUS,
-      payload: _constants2.default.LOGGED_OUT
-    };
-  }
-};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(11);
-
-var _express = __webpack_require__(12);
+var _express = __webpack_require__(9);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _renderer = __webpack_require__(13);
+var _renderer = __webpack_require__(10);
 
 var _renderer2 = _interopRequireDefault(_renderer);
 
@@ -476,19 +287,19 @@ app.listen(3000, function () {
 });
 
 /***/ }),
-/* 11 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("babel-polyfill");
 
 /***/ }),
-/* 12 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 13 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -502,19 +313,19 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(14);
+var _server = __webpack_require__(11);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRouterDom = __webpack_require__(4);
 
 var _redux = __webpack_require__(5);
 
 var _reactRedux = __webpack_require__(2);
 
-var _reducers = __webpack_require__(15);
+var _reducers = __webpack_require__(12);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _Routes = __webpack_require__(7);
+var _Routes = __webpack_require__(13);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -522,7 +333,7 @@ var _constants = __webpack_require__(1);
 
 var _constants2 = _interopRequireDefault(_constants);
 
-var _App = __webpack_require__(19);
+var _App = __webpack_require__(18);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -552,13 +363,13 @@ exports.default = function (req) {
 };
 
 /***/ }),
-/* 14 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 15 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -597,7 +408,7 @@ exports.default = (0, _redux.combineReducers)({
 });
 
 /***/ }),
-/* 16 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -611,11 +422,47 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ShoppingPage = __webpack_require__(4);
+var _reactRouterDom = __webpack_require__(4);
+
+var _ShoppingPage = __webpack_require__(3);
+
+var _ShoppingPage2 = _interopRequireDefault(_ShoppingPage);
+
+var _RegistrationPage = __webpack_require__(17);
+
+var _RegistrationPage2 = _interopRequireDefault(_RegistrationPage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var productsList = __webpack_require__(17);
+exports.default = function () {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(_reactRouterDom.Route, { path: "/", exact: true, component: _RegistrationPage2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: "/shopping", component: _ShoppingPage2.default })
+  );
+};
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ShoppingPage = __webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var productsList = __webpack_require__(15);
 
 var Product = function Product(_ref) {
   var product = _ref.product;
@@ -654,13 +501,13 @@ var ProductsContainer = function ProductsContainer() {
 exports.default = ProductsContainer;
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = [{"name":"Pixel XL","price":1000},{"name":"LG V20","price":700},{"name":"Iphone XS","price":1000},{"name":"Note 10","price":1200},{"name":"OnePlus 3","price":800},{"name":"Mate 20","price":1000}]
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -674,7 +521,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ShoppingPage = __webpack_require__(4);
+var _ShoppingPage = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -774,7 +621,96 @@ var Basket = function Basket(_ref3) {
 exports.default = Basket;
 
 /***/ }),
-/* 19 */
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _LogInPage = __webpack_require__(20);
+
+var _LogInPage2 = _interopRequireDefault(_LogInPage);
+
+var _reactRedux = __webpack_require__(2);
+
+var _SignUp = __webpack_require__(21);
+
+var _SignUp2 = _interopRequireDefault(_SignUp);
+
+var _SignUpInfo = __webpack_require__(22);
+
+var _SignUpInfo2 = _interopRequireDefault(_SignUpInfo);
+
+var _LogInInfo = __webpack_require__(23);
+
+var _LogInInfo2 = _interopRequireDefault(_LogInInfo);
+
+var _constants = __webpack_require__(1);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FIRST_LOAD = '';
+var LEFT = 'slideToLeft';
+var RIGHT = 'slideToRight';
+
+var RegistrationPage = function RegistrationPage(_ref) {
+  var history = _ref.history,
+      registrationStatus = _ref.registrationStatus;
+
+  var _useState = (0, _react.useState)(FIRST_LOAD),
+      _useState2 = _slicedToArray(_useState, 2),
+      sliderPosition = _useState2[0],
+      setSliderPosition = _useState2[1];
+
+  if (registrationStatus === _constants2.default.LOGGED_IN) {
+    history.push('/shopping');
+    return null;
+  }
+
+  var switchSlider = function switchSlider() {
+    switch (sliderPosition) {
+      case FIRST_LOAD:
+        setSliderPosition(LEFT);break;
+      case RIGHT:
+        setSliderPosition(LEFT);break;
+      case LEFT:
+        setSliderPosition(RIGHT);
+    }
+  };
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'registration-page' },
+    _react2.default.createElement(
+      'div',
+      { className: 'registration-container' },
+      _react2.default.createElement('div', { className: 'white-slider ' + sliderPosition }),
+      sliderPosition === RIGHT || sliderPosition === FIRST_LOAD ? _react2.default.createElement(_SignUpInfo2.default, { switchSlider: switchSlider }) : _react2.default.createElement(_SignUp2.default, null),
+      sliderPosition === RIGHT || sliderPosition === FIRST_LOAD ? _react2.default.createElement(_LogInPage2.default, { registrationStatus: true }) : _react2.default.createElement(_LogInInfo2.default, { switchSlider: switchSlider })
+    )
+  );
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return { registrationStatus: state.loggedIn };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(RegistrationPage);
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -790,7 +726,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _actions = __webpack_require__(9);
+var _actions = __webpack_require__(19);
 
 var _reactRedux = __webpack_require__(2);
 
@@ -841,6 +777,332 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, { logInFromLocalStorage: _actions.logInFromLocalStorage })(App);
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.logInFromLocalStorage = exports.verifyUser = undefined;
+
+var _types = __webpack_require__(6);
+
+var _types2 = _interopRequireDefault(_types);
+
+var _constants = __webpack_require__(1);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var EMAIL = "kahala";
+var PASSWORD = "admin";
+
+var verifyUser = exports.verifyUser = function verifyUser(email, password) {
+  if (email === EMAIL && password === PASSWORD) {
+    document.cookie = "loggedIn=true";
+    return {
+      type: _types2.default.LOG_IN_STATUS,
+      payload: _constants2.default.LOGGED_IN
+    };
+  } else {
+    document.cookie = "loggedIn=false";
+    return {
+      type: _types2.default.LOG_IN_STATUS,
+      payload: _constants2.default.INVALID_USER
+    };
+  }
+};
+
+var logInFromLocalStorage = exports.logInFromLocalStorage = function logInFromLocalStorage() {
+  var isLoggedIn = 'false';
+  if (document.cookie) isLoggedIn = document.cookie.split('=')[1];
+
+  if (isLoggedIn && isLoggedIn === 'true') {
+    return {
+      type: _types2.default.LOG_IN_STATUS,
+      payload: _constants2.default.LOGGED_IN
+    };
+  } else {
+    return {
+      type: _types2.default.LOG_IN_STATUS,
+      payload: _constants2.default.LOGGED_OUT
+    };
+  }
+};
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(2);
+
+var _actions = __webpack_require__(19);
+
+var _constants = __webpack_require__(1);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LogInPage = function LogInPage(_ref) {
+  var registrationStatus = _ref.registrationStatus,
+      verifyUser = _ref.verifyUser;
+
+  var _useState = (0, _react.useState)(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      emailInput = _useState2[0],
+      setEmailInput = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      passwordInput = _useState4[0],
+      setPasswordInput = _useState4[1];
+
+  var handleLogIn = function handleLogIn(event) {
+    event.preventDefault();
+    verifyUser(emailInput, passwordInput);
+  };
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'reg-side' },
+    _react2.default.createElement(
+      'form',
+      { className: 'form-container', onSubmit: handleLogIn },
+      _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'reg-title' },
+          'Log In'
+        ),
+        _react2.default.createElement('input', {
+          className: 'reg-input',
+          placeholder: 'Email Or User Name',
+          value: emailInput,
+          onChange: function onChange(_ref2) {
+            var target = _ref2.target;
+            return setEmailInput(target.value);
+          },
+          type: 'text'
+        }),
+        _react2.default.createElement('input', {
+          className: 'reg-input',
+          placeholder: 'Password',
+          value: passwordInput,
+          onChange: function onChange(_ref3) {
+            var target = _ref3.target;
+            return setPasswordInput(target.value);
+          },
+          type: 'password'
+        }),
+        registrationStatus === _constants2.default.INVALID_USER && _react2.default.createElement(
+          'div',
+          { className: 'error' },
+          'Wrong Email Or Password'
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'button-container' },
+        _react2.default.createElement(
+          'button',
+          { className: 'button' },
+          'LOG IN'
+        )
+      )
+    )
+  );
+};
+
+exports.default = (0, _reactRedux.connect)(null, { verifyUser: _actions.verifyUser })(LogInPage);
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _constants = __webpack_require__(1);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SignUp = function SignUp() {
+  return _react2.default.createElement(
+    "div",
+    { className: "reg-side" },
+    _react2.default.createElement(
+      "form",
+      { className: "form-container", onSubmit: function onSubmit(e) {
+          return e.preventDefault();
+        } },
+      _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "reg-title" },
+          "sign up"
+        ),
+        _react2.default.createElement("input", {
+          className: "reg-input",
+          placeholder: "User Name",
+          type: "text"
+        }),
+        _react2.default.createElement("input", {
+          className: "reg-input",
+          placeholder: "Email Address",
+          type: "text"
+        }),
+        _react2.default.createElement("input", {
+          className: "reg-input",
+          placeholder: "Password",
+          type: "text"
+        })
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "button-container" },
+        _react2.default.createElement(
+          "button",
+          { className: "button" },
+          "SIGN UP"
+        )
+      )
+    )
+  );
+};
+
+exports.default = SignUp;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SignUpInfo = function SignUpInfo(_ref) {
+  var switchSlider = _ref.switchSlider;
+
+  return _react2.default.createElement(
+    "div",
+    { className: "reg-side" },
+    _react2.default.createElement(
+      "div",
+      { className: "info-section info-section-left" },
+      _react2.default.createElement(
+        "div",
+        { className: "info-section__title" },
+        "Don't Have an account?"
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "info-section__body" },
+        "I just created it for the animation, click below to see it"
+      ),
+      _react2.default.createElement(
+        "button",
+        { className: "info-section__Button", onClick: function onClick() {
+            return switchSlider();
+          } },
+        "SIGN UP"
+      )
+    )
+  );
+};
+
+exports.default = SignUpInfo;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LogInInfo = function LogInInfo(_ref) {
+  var switchSlider = _ref.switchSlider;
+
+  return _react2.default.createElement(
+    "div",
+    { className: "reg-side" },
+    _react2.default.createElement(
+      "div",
+      { className: "info-section info-section-right" },
+      _react2.default.createElement(
+        "div",
+        { className: "info-section__title" },
+        "Have an account?"
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "info-section__body" },
+        "Click below to sign in, enter admin admin"
+      ),
+      _react2.default.createElement(
+        "button",
+        { className: "info-section__Button", onClick: function onClick() {
+            return switchSlider();
+          } },
+        "LOG IN"
+      )
+    )
+  );
+};
+
+exports.default = LogInInfo;
 
 /***/ })
 /******/ ]);

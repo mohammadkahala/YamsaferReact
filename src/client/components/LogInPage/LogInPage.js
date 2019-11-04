@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { verifyUser } from '../../redux/actions';
 import status from '../../../constants';
 
-const LogInPage = ({ history, registrationStatus, verifyUser }) => {
+const LogInPage = ({ registrationStatus, verifyUser }) => {
   const [ emailInput, setEmailInput ] = useState("");
   const [ passwordInput, setPasswordInput ] = useState("");
 
@@ -12,22 +12,21 @@ const LogInPage = ({ history, registrationStatus, verifyUser }) => {
     verifyUser(emailInput, passwordInput);
   };
 
-  if (registrationStatus === status.LOGGED_IN)
-    history.push('/shopping');
-
   return (
-      <div className="screen">
-        <form className="form" onSubmit={handleLogIn}>
+    <div className="reg-side">
+      <form className="form-container" onSubmit={handleLogIn}>
+        <div>
+          <div className="reg-title">Log In</div>
           <input
-            className="input"
-            placeholder="Enter your Email Or User Name"
+            className="reg-input"
+            placeholder="Email Or User Name"
             value={emailInput}
             onChange={({ target }) => setEmailInput(target.value)}
             type="text"
           />
           <input
-            className="input"
-            placeholder="Enter your Password"
+            className="reg-input"
+            placeholder="Password"
             value={passwordInput}
             onChange={({ target }) => setPasswordInput(target.value)}
             type="password"
@@ -36,16 +35,15 @@ const LogInPage = ({ history, registrationStatus, verifyUser }) => {
             registrationStatus === status.INVALID_USER &&
             <div className="error" >Wrong Email Or Password</div>
           }
+        </div>
+        <div className="button-container">
           <button className="button">
-            Log In
+            LOG IN
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
+    </div>
     )
 };
 
-const mapStateToProps = (state) => {
-  return { registrationStatus: state.loggedIn };
-};
-
-export default connect(mapStateToProps, { verifyUser })(LogInPage);
+export default connect(null, { verifyUser })(LogInPage);

@@ -2,115 +2,318 @@ html {
     font-size: 10px;
 }
 
-.screen {
+input{
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+button{
+    font-family: inherit;
+    font-size: 100%;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+input:focus{
+    outline: none;
+}
+
+
+
+
+/********************************
+REGISTRATION PAGE
+********************************/
+
+
+.registration-page {
+    background-image: url("/background4.jpg");
+    background-size: cover;
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-flow: column;
 }
 
-.form {
-    width: 50%;
+.registration-container {
+    width: 60%;
     height: 50%;
+    background-color: rgba(60, 60, 62, 0.85);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg-side {
+    width: 40%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.white-slider {
+    position: absolute;
+    height: 110%;
+    width: 50%;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 2px;
+    right: 5%;
+}
+
+.slideToLeft {
+    right: 45%;
+    animation-name: slideToLeft;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes slideToLeft{
+    0%  {
+        right: 5%;
+    }
+
+    60% {
+        right: 47%;
+    }
+
+    80% {
+        right: 44%;
+    }
+
+    100% {
+        right: 45%;
+    }
+}
+
+.slideToRight {
+    right: 5%;
+    animation-name: slideToRight;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes slideToRight{
+    0%  {
+        right: 45%;
+    }
+
+    60% {
+        right: 3%;
+    }
+
+    80% {
+        right: 6%;
+    }
+
+    100% {
+        right: 5%;
+    }
+}
+
+.form-container {
+    width: 90%;
+    height: 90%;
     display: flex;
     flex-flow: column;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
-.input {
-    width: 80%;
-    font-size: 1.5rem;
-    height: 20px;
-    padding: 5px 10px;
+.reg-title {
+    color: indianred;
+    font-size: 2.5rem;
+    margin: 15px 0;
+    text-transform: uppercase;
+}
+
+.reg-input {
+    width: 100%;
+    padding: 5px 3px;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #DADADF;
+    margin: 10px 0;
+}
+
+.button-container {
+    display: flex;
+    flex-flow: row-reverse;
+    margin: 15px 0;
 }
 
 .button {
-    width: 100px;
-    padding: 5px 10px;
+    background-color: #3D462B;
+    padding: 15px;
+    color: white;
+    border-radius: 15px;
+    font-size: 1.8rem;
+    cursor: pointer;
 }
 
-.error {
-    font-size: 2rem;
-    color: red;
-}
-
-.shopping-screen {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-flow: row;
-}
-
-.productsContainer {
-    width: 25%;
-    height: 100%;
-    background-color: bisque;
-    display: flex;
-    flex-flow: column;
-}
-
-.product {
-    box-sizing: border-box;
-    display: flex;
-    /*justify-content: center;*/
-    padding: 0 10px;
-    align-items: center;
-    justify-content: space-between;
-    background-color: cadetblue;
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 5px 0;
-    width: 100%;
-    height: 60px;
-}
-
-.basketContainer {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.basketList {
-    height: 400px;
-    width: 300px;
-    background-color: #bac9c2;
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.basketItem {
-    width: 100%;
-    height: 30px;
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.5rem;
-    font-weight: bold;
-    box-sizing: border-box;
-    padding: 0 10px;
-}
-
-.price {
-    text-align: center;
-    font-size: 2rem;
-    color: #cd0f0d;
-    font-weight: bold;
-}
-
-.hint {
-    font-size: 2rem;
-    text-align: center;
-    color: #5a6662;
-}
-
-.itemData {
+.info-section {
     width: 30%;
+    height: 50%;
+    justify-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
 }
+
+.info-section-right {
+    right: 5%;
+}
+
+.info-section-left {
+    left: 5%;
+}
+
+.info-section__title {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.info-section__body {
+    color: #979797;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.info-section__Button {
+    font-size: 1.5rem;
+    border: 1px solid #979797;
+    color: #c9c9c9;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+}
+
+
+/********************************
+REGISTRATION PAGE
+********************************/
+
+
+
+
+/*.screen {*/
+/*}*/
+
+/*.form {*/
+/*    width: 50%;*/
+/*    height: 50%;*/
+/*    display: flex;*/
+/*    flex-flow: column;*/
+/*    align-items: center;*/
+/*    justify-content: space-around;*/
+/*}*/
+
+/*.input {*/
+/*    width: 80%;*/
+/*    font-size: 1.5rem;*/
+/*    height: 20px;*/
+/*    padding: 5px 10px;*/
+/*}*/
+
+/*.button {*/
+/*    width: 100px;*/
+/*    padding: 5px 10px;*/
+/*}*/
+
+/*.error {*/
+/*    font-size: 2rem;*/
+/*    color: red;*/
+/*}*/
+
+/*.shopping-screen {*/
+/*    width: 100vw;*/
+/*    height: 100vh;*/
+/*    display: flex;*/
+/*    flex-flow: row;*/
+/*}*/
+
+/*.productsContainer {*/
+/*    width: 25%;*/
+/*    height: 100%;*/
+/*    background-color: bisque;*/
+/*    display: flex;*/
+/*    flex-flow: column;*/
+/*}*/
+
+/*.product {*/
+/*    box-sizing: border-box;*/
+/*    display: flex;*/
+/*    !*justify-content: center;*!*/
+/*    padding: 0 10px;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*    background-color: cadetblue;*/
+/*    font-size: 2rem;*/
+/*    font-weight: bold;*/
+/*    margin: 5px 0;*/
+/*    width: 100%;*/
+/*    height: 60px;*/
+/*}*/
+
+/*.basketContainer {*/
+/*    flex: 1;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.basketList {*/
+/*    height: 400px;*/
+/*    width: 300px;*/
+/*    background-color: #bac9c2;*/
+/*    display: flex;*/
+/*    flex-flow: column;*/
+/*    justify-content: space-between;*/
+/*    padding: 20px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*.basketItem {*/
+/*    width: 100%;*/
+/*    height: 30px;*/
+/*    margin: 5px 0;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*    font-size: 1.5rem;*/
+/*    font-weight: bold;*/
+/*    box-sizing: border-box;*/
+/*    padding: 0 10px;*/
+/*}*/
+
+/*.price {*/
+/*    text-align: center;*/
+/*    font-size: 2rem;*/
+/*    color: #cd0f0d;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.hint {*/
+/*    font-size: 2rem;*/
+/*    text-align: center;*/
+/*    color: #5a6662;*/
+/*}*/
+
+/*.itemData {*/
+/*    width: 30%;*/
+/*}*/
